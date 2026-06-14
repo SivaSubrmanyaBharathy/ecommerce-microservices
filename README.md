@@ -96,6 +96,16 @@ A Postman collection (`ecommerce_postman_collection.json`) is included in the ro
 2. Click **Import** and select the `ecommerce_postman_collection.json` file.
 3. You can now test the complete flow (Create Product -> View Products -> Create Order -> Initiate Payment -> Verify Order).
 
+### Step 5: Viewing the Database (pgAdmin)
+A pgAdmin instance is included in the Docker Compose setup for easy database inspection.
+1. Open your browser and go to: **http://localhost:5050**
+2. **Login Credentials:**
+   - Email: `admin@admin.com`
+   - Password: `admin`
+3. In the left sidebar under "Servers", double-click **Ecommerce DB** (it is auto-provisioned).
+4. Enter the database password: `password`
+5. Navigate to `Databases` -> `ecommercedb` -> `Schemas` -> `public` -> `Tables` to view the data.
+
 ---
 
 ## Assumptions & Limitations

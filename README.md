@@ -28,6 +28,9 @@ To ensure the system remains highly responsive and can handle heavy traffic, we 
 4. **Processing**: The worker executes the heavy logic (simulated in this project with a 3-second delay to represent a payment gateway call).
 5. **Completion**: Once the payment is verified, the worker updates the database, changing the order status from `PENDING_PAYMENT` to `PAID`. 
 
+### Secondary Example: Bulk Product Uploads
+The same asynchronous queue mechanism is used for **Bulk Excel Uploads**. When an admin uploads an Excel file, the Product Service instantly saves the file, publishes a `PROCESS_BULK_UPLOAD` event, and returns a success response. The Worker Service then processes the Excel file, parsing hundreds of rows and inserting them into the database in the background without blocking the API!
+
 This asynchronous queue mechanism provides **fault tolerance** (if the worker crashes, the message stays in the queue until it restarts) and **scalability** (we can spin up multiple worker instances to process payments in parallel).
 
 ---

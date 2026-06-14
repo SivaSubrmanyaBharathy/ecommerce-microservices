@@ -1,0 +1,173 @@
+{
+  "info": {
+    "name": "E-Commerce Microservices Demo",
+    "description": "Postman collection for testing the Product, Order, and Payment microservices.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Product Service",
+      "item": [
+        {
+          "name": "List Products",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/products",
+              "protocol": "http",
+              "host": [ "localhost" ],
+              "port": "3001",
+              "path": [ "products" ]
+            }
+          }
+        },
+        {
+          "name": "Create Product",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sku\": \"LAPTOP-02\",\n  \"name\": \"Gaming Laptop\",\n  \"price\": 1499.99,\n  \"stock\": 10\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3001/admin/products",
+              "protocol": "http",
+              "host": [ "localhost" ],
+              "port": "3001",
+              "path": [ "admin", "products" ]
+            }
+          }
+        },
+        {
+          "name": "Deactivate Product",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/admin/products/1/deactivate",
+              "protocol": "http",
+              "host": [ "localhost" ],
+              "port": "3001",
+              "path": [ "admin", "products", "1", "deactivate" ]
+            }
+          }
+        },
+        {
+          "name": "Download Template",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3001/admin/products/template",
+              "protocol": "http",
+              "host": [ "localhost" ],
+              "port": "3001",
+              "path": [ "admin", "products", "template" ]
+            }
+          }
+        },
+        {
+          "name": "Bulk Upload",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:3001/admin/products/bulk",
+              "protocol": "http",
+              "host": [ "localhost" ],
+              "port": "3001",
+              "path": [ "admin", "products", "bulk" ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Order Service",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"productId\": 1,\n      \"quantity\": 1\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3002/orders",
+              "protocol": "http",
+              "host": [ "localhost" ],
+              "port": "3002",
+              "path": [ "orders" ]
+            }
+          }
+        },
+        {
+          "name": "Get Order",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3002/orders/1",
+              "protocol": "http",
+              "host": [ "localhost" ],
+              "port": "3002",
+              "path": [ "orders", "1" ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Payment Service",
+      "item": [
+        {
+          "name": "Initiate Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"orderId\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3003/payments/initiate",
+              "protocol": "http",
+              "host": [ "localhost" ],
+              "port": "3003",
+              "path": [ "payments", "initiate" ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

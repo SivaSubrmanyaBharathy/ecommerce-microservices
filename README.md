@@ -92,3 +92,11 @@ A Postman collection (`ecommerce_postman_collection.json`) is included in the ro
 1. Open Postman.
 2. Click **Import** and select the `ecommerce_postman_collection.json` file.
 3. You can now test the complete flow (Create Product -> View Products -> Create Order -> Initiate Payment -> Verify Order).
+
+---
+
+## Assumptions & Limitations
+- **Mock Payments**: The payment gateway is simulated with a time delay in the worker service. In a real system, this would interact with Stripe/PayPal webhooks.
+- **Authentication**: To keep the focus on core mechanics, user authentication (JWT/Sessions) is omitted. Admin and User routes are separated by URL path rather than middleware.
+- **Idempotency**: Basic idempotency is handled via state-checks (e.g., an order cannot be paid twice), but a production system would use dedicated idempotency keys for payment requests.
+- **Bulk Uploads**: The Excel upload assumes a specific template format and does not include advanced row-by-row error reporting to the user interface.
